@@ -146,7 +146,7 @@ class Response extends Action implements CsrfAwareActionInterface
                 $redirectUrl = $urlInterface->getUrl('checkout/onepage/failure/');
             }
         } else if ($gatewayTransaction->result == 'failure') {
-<<<<<<< HEAD
+
             $order->cancel();
             $order->addStatusHistoryComment(__('Order cancelled due to failed transaction'))->setIsCustomerNotified(true);
             $order->save();
@@ -154,7 +154,7 @@ class Response extends Action implements CsrfAwareActionInterface
         } else {
             $order->cancel();
             $order->addStatusHistoryComment('Order cancelled due to failed transaction: ' . $gatewayTransaction->merchantTxId . '(' . $gatewayTransaction->txId . ') failed: ' . implode("|", $gatewayTransaction->errors))->setIsCustomerNotified(true);
-=======
+
             $order->setState("canceled")
                 ->setStatus("canceled")
                 ->addStatusHistoryComment(__('Order cancelled due to failed transaction'))->setIsCustomerNotified(true);
@@ -164,7 +164,7 @@ class Response extends Action implements CsrfAwareActionInterface
             $order->setState("canceled")
                 ->setStatus("canceled")
                 ->addStatusHistoryComment('Order cancelled due to failed transaction: ' . $gatewayTransaction->merchantTxId . '(' . $gatewayTransaction->txId . ') failed: ' . implode("|", $gatewayTransaction->errors))->setIsCustomerNotified(true);
->>>>>>> 919b5ac25473601d997ef22fbd73e3465da0bfb5
+
             $order->save();
             $redirectUrl = $urlInterface->getUrl('checkout/onepage/failure/');
         }
